@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package github;
+
+message Team {
+	string name = 1;
+	int32 id = 2;
+	string slug = 3;
+	string description = 4;
+	string permission = 5;
+	string url = 6;
+	string members_url = 7;
+	string repositories_url = 8;
+}

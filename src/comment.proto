@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package github;
+
+import "user.proto";
+
+message Comment {
+	string url = 1;
+	string html_url = 2;
+	int32 id = 3;
+	User user = 4;
+	int32 position = 5;
+	int32 line = 6;
+	string path = 7;
+	string commit_id = 8;
+	string created_at = 9;
+	string updated_at = 10;
+	string body = 11;
+}

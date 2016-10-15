@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#issuecommentevent
+
+package github;
+
+import "user.proto";
+import "issue.proto";
+import "comment.proto";
+import "repository.proto";
+
+message IssueCommentEvent {
+	string action = 1;
+	Issue issue = 2;
+	Comment comment = 3;
+	Repository repository = 4;
+	User sender = 5;
+}

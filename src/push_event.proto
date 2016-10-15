@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#pushevent
+
+package github;
+
+import "user.proto";
+import "commit_user.proto";
+import "repository.proto";
+
+message Commit {
+	string id = 1;
+	string tree_id = 2;
+	bool distinct = 3;
+	string message = 4;
+	string timestamp = 5;
+	string url = 6;
+	CommitUser author = 7;
+	CommitUser committer = 8;
+	repeated string added = 9;
+	repeated string removed = 10;
+	repeated string modified = 11;
+}
+
+message PushEvent {
+	string ref = 1;
+	string before = 2;
+	string after = 3;
+	bool created = 4;
+	bool deleted = 5;
+	bool forced = 6;
+	string base_ref = 7;
+	string compare = 8;
+	repeated Commit commits = 9;
+	Commit head_commit = 10;
+	Repository repository = 11;
+	CommitUser pusher = 12;
+	User sender = 13;
+}

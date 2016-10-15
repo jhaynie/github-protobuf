@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/repos/releases
+
+package github;
+
+import "user.proto";
+
+message Asset {
+	string url = 1;
+	string browser_download_url = 2;
+	int32 id = 3;
+	string name = 4;
+	string label = 5;
+	string state = 6;
+	string content_type = 7;
+	int32 size = 8;
+	int32 download_count = 9;
+	string created_at = 10;
+	string updated_at = 11;
+	User uploader = 12;
+}
+
+message Release {
+	string url = 1;
+	string html_url = 2;
+	string assets_url = 3;
+	string upload_url = 4;
+	string tarball_url = 5;
+	string zipball_url = 6;
+	int32 id = 7;
+	string tag_name = 8;
+	string target_commitish = 9;
+	string name = 10;
+	string body = 11;
+	bool draft = 12;
+	bool prerelease = 13;
+	string created_at = 14;
+	string published_at = 15;
+	User author = 16;
+	repeated Asset assets = 17;
+}

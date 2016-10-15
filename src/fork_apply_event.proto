@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+// NOTE: this event is deprecated but provided for older timelines
+// https://developer.github.com/v3/activity/events/types/#forkapplyevent
+
+package github;
+
+message ForkApplyEvent {
+	string head = 1;
+	string header = 2;
+	string after = 3;
+}

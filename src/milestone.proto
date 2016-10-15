@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package github;
+
+import "user.proto";
+
+message Milestone {
+	string url = 1;
+	string html_url = 2;
+ 	string labels_url = 3;
+	int32 id = 4;
+	int32 number = 5;
+	enum State {
+		open = 0;
+		closed = 1;
+	}
+	State state = 6;
+	string title = 7;
+	string description = 8;
+	User creator = 9;
+	int32 open_issues = 10;
+	int32 closed_issues = 11;
+	string created_at = 12;
+	string updated_at = 13;
+	string closed_at = 14;
+	string due_on = 15;
+}

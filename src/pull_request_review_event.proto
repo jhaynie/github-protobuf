@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#pullrequestreviewevent
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+import "pullrequest.proto";
+
+message PullRequestReviewLink {
+	string html = 1;
+}
+
+message PullRequestReviewLinks {
+	PullRequestReviewLink html = 1;
+	PullRequestReviewLink pull_request = 2;
+}
+
+message PullRequestReview {
+	int32 id = 1;
+	User user = 2;
+	string body = 3;
+	string submitted_at = 4;
+	string state = 5;
+	string html_url = 6;
+	string pull_request_url = 7;
+	PullRequestReviewLinks _links = 8;
+}
+
+message PullRequestReviewEvent {
+	string action = 1;
+	PullRequestReview review = 2;
+	PullRequest pull_request = 3;
+	Repository repository = 4;
+	User sender = 5;
+}

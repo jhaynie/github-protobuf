@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#pagebuildevent
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+
+message BuildError {
+	string message = 1;
+}
+
+message Build {
+	string url = 1;
+	string status = 2;
+	BuildError error = 3;
+	User pusher = 4;
+	string commit = 5;
+	int32 duration = 6;
+	string created_at = 7;
+	string updated_at = 8;
+}
+
+message PageBuildEvent {
+	int32 id = 1;
+	Build build = 2;
+	Repository repository = 3;
+	User sender = 4;
+}

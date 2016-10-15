@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#publicevent
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+
+message PublicEvent {
+	Repository repository = 1;
+	User sender = 2;
+}

@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+// NOTE: this event is deprecated but provided for older timelines
+// https://developer.github.com/v3/activity/events/types/#gistevent
+
+package github;
+
+import "user.proto";
+
+message GistFile {
+	int32 size = 1;
+	string raw_url = 2;
+	string type = 3;
+	string language = 4;
+	bool truncated = 5;
+	string content = 6;
+}
+
+message GistFork {
+	User user = 1;
+	string url = 2;
+	string id = 3;
+	string created_at = 4;
+	string updated_at = 5;
+}
+
+message GistChangeStatus {
+	int32 deletions = 1;
+	int32 additions = 2;
+	int32 total = 3;
+}
+
+message GistHistory {
+	string url = 1;
+	string version = 2;
+	User user = 3;
+	GistChangeStatus change_status = 4;
+	string committed_at = 5;
+}
+
+message Gist {
+	string url = 1;
+	string forks_url = 2;
+	string commits_url = 3;
+	int32 id = 4;
+	string description = 5;
+	bool public = 6;
+	User owner = 7;
+	User user = 8;
+	map<string, GistFile> files = 9;
+	bool truncated = 10;
+	int32 comments = 11;
+	string comments_url = 12;
+	string html_url = 13;
+	string git_pull_url = 14;
+	string git_push_url = 15;
+	string created_at = 16;
+	string updated_at = 17;
+	repeated GistFork forks = 18;
+}
+
+message GistEvent {
+	string action = 1;
+	Gist gist = 2;
+}

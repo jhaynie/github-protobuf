@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#deploymentstatusevent
+
+package github;
+
+import "user.proto";
+
+message Deployment {
+	string url = 1;
+	int32 id = 2;
+	string sha = 3;
+	string ref = 4;
+	string task = 5;
+	map<string, string> payload = 6;
+	string environment = 7;
+	string description = 8;
+	User creator = 9;
+	string created_at = 10;
+   string updated_at = 11;
+   string statuses_url = 12;
+   string repository_url = 13;
+}

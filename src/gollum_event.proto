@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#gollumevent
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+
+message GollumPage {
+	string page_name = 1;
+	string title = 2;
+	string summary = 3;
+	string action = 4;
+	string sha = 5;
+	string html_url = 6;
+}
+
+message GollumEvent {
+	repeated GollumPage pages = 1;
+	Repository repository = 2;
+	User sender = 3;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+// NOTE: this event is deprecated but provided for older timelines
+// https://developer.github.com/v3/activity/events/types/#followevent
+
+package github;
+
+import "user.proto";
+
+message FollowEvent {
+	User target = 1;
+}

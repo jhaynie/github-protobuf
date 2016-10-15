@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#downloadevent
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+import "deployment.proto";
+
+message DeploymentStatus {
+	string url = 1;
+	int32 id = 2;
+	string state = 3;
+	User creator = 4;
+	string description = 5;
+	string target_url = 6;
+	string created_at = 7;
+	string updated_at = 8;
+	string deployment_url = 9;
+	string repository_url = 10;
+}
+
+message DeploymentStatusEvent {
+	DeploymentStatus deployment_status = 1;
+	Deployment deployment = 2;
+	Repository repository = 3;
+	User sender = 4;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#deploymentevent
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+import "deployment.proto";
+
+message DeploymentEvent {
+	Deployment deployment = 1;
+	Repository repository = 2;
+	User sender = 3;
+}

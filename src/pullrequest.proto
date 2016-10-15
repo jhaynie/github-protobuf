@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/pulls
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+import "milestone.proto";
+
+message RepositoryRef {
+	string label = 1;
+	string ref = 2;
+	string sha = 3;
+	User user = 4;
+	Repository repo = 5;
+}
+
+message LinkHref {
+	string href = 1;
+}
+
+message Links {
+	LinkHref self = 1;
+	LinkHref html = 2;
+	LinkHref issue = 3;
+	LinkHref comments = 4;
+	LinkHref review_comments = 5;
+	LinkHref review_comment = 6;
+	LinkHref commits = 7;
+	LinkHref statuses = 8;
+}
+
+message PullRequest {
+	int32 id = 1;
+	string url = 2;
+   string html_url = 3;
+   string diff_url = 4;
+   string patch_url = 5;
+   string issue_url = 6;
+   string commits_url = 7;
+   string review_comments_url = 8;
+   string review_comment_url = 9;
+   string comments_url = 10;
+   string statuses_url = 11;
+	int32 number = 12;
+	string state = 13;
+	string title = 14;
+	string body = 15;
+	User assignee = 16;
+	Milestone milestone = 17;
+	bool locked = 18;
+	string created_at = 19;
+	string updated_at = 20;
+	string closed_at = 21;
+	string merged_at = 22;
+	RepositoryRef head = 23;
+	RepositoryRef base = 24;
+	User user = 25;
+	string merge_commit_sha = 26;
+	bool merged = 27;
+	bool mergeable = 28;
+	Links _links = 29;
+	User merged_by = 30;
+	int32 comments = 31;
+	int32 commits = 32;
+	int32 additions = 33;
+	int32 deletions = 34;
+	int32 changed_files = 35;
+}

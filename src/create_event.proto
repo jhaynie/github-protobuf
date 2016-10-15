@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#createevent
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+
+message CreateEvent {
+	string ref = 1;
+	string ref_type = 2;
+	string master_branch = 3;
+	string description = 4;
+	string pusher_type = 5;
+	Repository repository = 6;
+	User sender = 7;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#memberevent
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+
+message MemberEvent {
+	string action = 1;
+	User member = 2;
+	Repository repository = 3;
+	User sender = 4;
+}

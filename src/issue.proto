@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/issues
+
+package github;
+
+import "user.proto";
+import "milestone.proto";
+
+message Label {
+	string url = 1;
+	string name = 2;
+	string color = 3;
+}
+
+message Issue {
+	int32 id = 1;
+	string url = 2;
+   string repository_url = 3;
+   string labels_url = 4;
+   string comments_url = 5;
+   string events_url = 6;
+   string html_url = 7;
+	int32 number = 8;
+	enum State {
+		open = 0;
+		closed = 1;
+	}
+	State state = 9;
+	string title = 10;
+	string body = 11;
+	User user = 12;
+	repeated Label labels = 13;
+	User assignee = 14;
+	Milestone milestone = 15;
+	bool locked = 16;
+	int32 comments = 17;
+	string closed_at = 18;
+	string created_at = 19;
+	string updated_at = 20;
+	User closed_by = 21;
+}
