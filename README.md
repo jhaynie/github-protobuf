@@ -2,6 +2,8 @@
 
 This project contains the [protobuf](https://github.com/google/protobuf) definition files for entities and events in the [Github API](https://developer.github.com/).
 
+[![Build Status](https://travis-ci.org/jhaynie/github-protobuf.svg?branch=master)](https://travis-ci.org/jhaynie/github-protobuf)
+
 ## Building
 
 You can generate language bindings by running the Makefile with the following targets:
