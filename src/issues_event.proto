@@ -9,17 +9,7 @@ import "issue.proto";
 import "repository.proto";
 
 message IssuesEvent {
-	enum Action {
-		assigned = 0;
-		unassigned = 1;
-		labeled = 2;
-		unlabeled = 3;
-		opened = 4;
-		edited = 5;
-		closed = 6;
-		reopened = 7;
-	}
-	Action action = 1;
+	string action = 1;
 	Issue issue = 2;
 	Repository repository = 3;
 	User sender = 4;

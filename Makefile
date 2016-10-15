@@ -1,4 +1,5 @@
-.PHONY: all clean
+.PHONY: default
+.DEFAULT_GOAL := test
 
 VERSION := 1.0.0
 NAME := github-protobuf
@@ -6,6 +7,8 @@ PKG := jhaynie/$(NAME)
 
 SHELL := /bin/bash
 BASEDIR := $(shell echo $${PWD})
+
+default: all test;
 
 clean:
 	@rm -rf build
@@ -33,6 +36,10 @@ protoc-ruby:
 protoc-php:
 	@mkdir -p build/$(VERSION)/php
 	@docker run --rm -v $(BASEDIR):/app -w /app znly/protoc --php_out=build/$(VERSION)/php -Isrc src/*.proto
+
+test: protoc-go
+	@cp test/* build/$(VERSION)/go
+	@cd build/$(VERSION)/go && go test -v *.pb.go *_test.go
 
 all: protoc-go protoc-python protoc-java protoc-js protoc-ruby protoc-php
 

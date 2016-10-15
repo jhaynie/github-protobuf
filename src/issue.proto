@@ -22,11 +22,7 @@ message Issue {
    string events_url = 6;
    string html_url = 7;
 	int32 number = 8;
-	enum State {
-		open = 0;
-		closed = 1;
-	}
-	State state = 9;
+	string state = 9;
 	string title = 10;
 	string body = 11;
 	User user = 12;

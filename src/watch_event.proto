@@ -8,10 +8,7 @@ import "user.proto";
 import "repository.proto";
 
 message WatchEvent {
-	enum Action {
-		started = 0;
-	}
-	Action action = 1;
+	string action = 1;
 	Repository repository = 2;
 	User sender = 3;
 }

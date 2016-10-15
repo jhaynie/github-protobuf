@@ -8,13 +8,7 @@ import "user.proto";
 import "repository.proto";
 
 message RepositoryEvent {
-	enum Action {
-		created = 0;
-		deleted = 1;
-		publicized = 2;
-		privatized = 3;
-	}
-	Action action = 1;
+	string action = 1;
 	Repository repository = 2;
 	User organization = 3;
 	User sender = 4;
