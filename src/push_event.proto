@@ -9,7 +9,7 @@ import "commit_user.proto";
 import "repository.proto";
 
 message PushCommit {
-	string id = 1;
+	string sha = 1;
 	string tree_id = 2;
 	bool distinct = 3;
 	string message = 4;
