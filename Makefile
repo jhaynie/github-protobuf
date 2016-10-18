@@ -1,7 +1,7 @@
 .PHONY: default
 .DEFAULT_GOAL := test
 
-VERSION := 1.0.0
+VERSION := 1.0.1
 NAME := github-protobuf
 PKG := jhaynie/$(NAME)
 
@@ -43,7 +43,7 @@ test: protoc-go
 
 all: protoc-go protoc-python protoc-java protoc-js protoc-ruby protoc-php
 
-release: all
+release: clean all
 	@cd build && rm -rf *.tar *.gz && tar cvf $(NAME)-$(VERSION).tar * && gzip *.tar
 
 default: all

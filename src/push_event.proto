@@ -8,7 +8,7 @@ import "user.proto";
 import "commit_user.proto";
 import "repository.proto";
 
-message Commit {
+message PushCommit {
 	string id = 1;
 	string tree_id = 2;
 	bool distinct = 3;
@@ -31,8 +31,8 @@ message PushEvent {
 	bool forced = 6;
 	string base_ref = 7;
 	string compare = 8;
-	repeated Commit commits = 9;
-	Commit head_commit = 10;
+	repeated PushCommit commits = 9;
+	PushCommit head_commit = 10;
 	Repository repository = 11;
 	CommitUser pusher = 12;
 	User sender = 13;

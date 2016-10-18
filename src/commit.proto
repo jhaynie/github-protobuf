@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package github;
+
+import "user.proto";
+import "repository.proto";
+import "commit_user.proto";
+
+message CommitDetailTree {
+	string sha = 1;
+	string url = 2;
+}
+
+message CommitLanguage {
+	string ace_mode = 1;
+	string group = 2;
+	bool is_popular = 3;
+	bool is_unpopular = 4;
+	string type = 5;
+}
+
+message CommitLinguist {
+	string content_type = 1;
+	string disposition = 2;
+	string extname = 3;
+	bool is_binary = 4;
+	bool is_documentation = 5;
+	bool is_generated = 6;
+	bool is_high_ratio_of_long_lines = 7;
+	bool is_image = 8;
+	bool is_large = 9;
+	bool is_safe_to_colorize = 10;
+	bool is_text = 11;
+	bool is_vendored = 12;
+	bool is_viewable = 13;
+	int32 loc = 14;
+	int32 sloc = 15;
+	string type = 16;
+	CommitLanguage language = 17;
+}
+
+message CommitFramework {
+	string name = 1;
+}
+
+message CommitLicense {
+	string id = 1;
+	string name = 2;
+	string url = 3;
+	bool osiApproved = 4;
+	string proprietary = 5;
+}
+
+message CommitFileDetail {
+	string id = 1;
+	string commit = 2;
+	User author = 3;
+	User committer = 4;
+	bool binary = 5;
+	string body = 6;
+	string patch = 7;
+	string filename = 8;
+	string language = 9;
+	string mimetype = 10;
+	string status = 11;
+	int32 size = 12;
+	int32 additions = 13;
+	int32 deletions = 14;
+	map<string, CommitLicense> licenses = 15;
+	repeated CommitFramework frameworks = 16;
+	CommitLinguist linguist = 17;
+}
+
+message CommitDetail {
+	CommitUser author = 1;
+	CommitUser committer = 2;
+	int32 comment_count = 3;
+	string message = 4;
+	CommitDetailTree tree = 5;
+	string url = 6;
+}
+
+message Commit {
+	string id = 1;
+	string sha = 2;
+	User author = 3;
+	User committer = 4;
+	CommitDetail commit = 5;
+	repeated CommitFileDetail files = 6;
+	repeated CommitDetailTree parents = 7;
+	Repository repo = 8;
+}

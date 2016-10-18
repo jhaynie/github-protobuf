@@ -8,34 +8,34 @@ import "user.proto";
 import "commit_user.proto";
 import "repository.proto";
 
-message CommitDetailTree {
+message StatusCommitDetailTree {
 	string sha = 1;
 	string url = 2;
 }
 
-message CommitBranch {
+message StatusCommitBranch {
 	string name = 1;
-	CommitDetailTree commit = 2;
+	StatusCommitDetailTree commit = 2;
 }
 
-message CommitDetail {
+message StatusCommitDetail {
 	CommitUser author = 1;
 	CommitUser committer = 2;
 	string message = 3;
-	CommitDetailTree tree = 4;
+	StatusCommitDetailTree tree = 4;
 	string url = 5;
 	int32 comment_count = 6;
 }
 
-message CommitUpdate {
+message StatusCommitUpdate {
 	string sha = 1;
-	CommitDetail commit = 2;
+	StatusCommitDetail commit = 2;
 	string url = 3;
 	string html_url = 4;
 	string comments_url = 5;
 	User author = 6;
 	User committer = 7;
-	repeated CommitDetailTree parents = 8;
+	repeated StatusCommitDetailTree parents = 8;
 }
 
 message StatusEvent {
@@ -46,8 +46,8 @@ message StatusEvent {
 	string context = 5;
 	string description = 6;
 	string state = 7;
-	CommitUpdate commit = 8;
-	repeated CommitBranch branches = 9;
+	StatusCommitUpdate commit = 8;
+	repeated StatusCommitBranch branches = 9;
 	string created_at = 10;
 	string updated_at = 11;
 	Repository repository = 12;
