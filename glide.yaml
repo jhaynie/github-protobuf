@@ -3,3 +3,10 @@ import:
 - package: github.com/golang/protobuf
   subpackages:
   - proto
+- package: github.com/gogo/protobuf
+  version: ~0.3.0
+  subpackages:
+  - proto
+  - protoc-gen-gogo
+  - gogoproto
+  - protoc-gen-gofast
