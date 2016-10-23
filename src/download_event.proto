@@ -5,6 +5,13 @@ syntax = "proto3";
 
 package github;
 
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
 message Download {
 	string url = 1;
 	string html_url = 2;

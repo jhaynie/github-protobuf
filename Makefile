@@ -1,7 +1,7 @@
 .PHONY: default
 .DEFAULT_GOAL := test
 
-VERSION := 1.0.1
+VERSION := 1.0.2
 NAME := github-protobuf
 PKG := jhaynie/$(NAME)
 
@@ -13,9 +13,11 @@ default: all test;
 clean:
 	@rm -rf build
 
+
 protoc-go:
 	@mkdir -p build/$(VERSION)/go
-	@docker run --rm -v $(BASEDIR):/app -w /app znly/protoc --go_out=build/$(VERSION)/go -Isrc src/*.proto
+	@cp src/*.proto build/$(VERSION)/go
+	@docker run --rm -v $(BASEDIR):/app -v $(GOPATH):$(GOPATH) -w /app znly/protoc --gofast_out=build/$(VERSION)/go --proto_path=$(GOPATH)/src:$(GOPATH)/src/github.com/gogo/protobuf/protobuf:src src/*.proto
 
 protoc-python:
 	@mkdir -p build/$(VERSION)/python
