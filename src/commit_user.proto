@@ -13,4 +13,5 @@ message CommitUser {
 	string name = 1;
 	string email = 2;
 	string username = 3;
+	string date = 4;
 }

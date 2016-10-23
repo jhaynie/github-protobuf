@@ -775,5 +775,8 @@ func TestCommitEventWithFrameworksAndLicenses(t *testing.T) {
 		if lic.Url != "http://www.opensource.org/licenses/MIT" {
 			t.Error("commit.Files[0].Licenses[\"MIT\"].Url != http://www.opensource.org/licenses/MIT")
 		}
+		if commit.Commit.Author.Date != "2016-01-29T21:28:59Z" {
+			t.Error("commit.Commit.Author.Date != 2016-01-29T21:28:59Z")
+		}
 	}
 }
