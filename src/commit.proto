@@ -70,7 +70,7 @@ message CommitFileDetail {
 	string language = 9;
 	string mimetype = 10;
 	string status = 11;
-	int32 size = 12;
+	int32 size = 12 [(gogoproto.customname) = "FileSize"];
 	int32 additions = 13;
 	int32 deletions = 14;
 	map<string, CommitLicense> licenses = 15;

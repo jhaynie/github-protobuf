@@ -778,5 +778,11 @@ func TestCommitEventWithFrameworksAndLicenses(t *testing.T) {
 		if commit.Commit.Author.Date != "2016-01-29T21:28:59Z" {
 			t.Error("commit.Commit.Author.Date != 2016-01-29T21:28:59Z")
 		}
+		if commit.Files[0].FileSize != 55746 {
+			t.Error("commit.Files[0].FileSize != 55746")
+		}
+		if commit.Files[1].FileSize != 2468 {
+			t.Error("commit.Files[1].FileSize != 2468")
+		}
 	}
 }
