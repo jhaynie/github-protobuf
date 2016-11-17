@@ -15,7 +15,7 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 
 message GistFile {
-	int32 size = 1;
+	int32 size = 1 [(gogoproto.customname) = "FileSize"];
 	string raw_url = 2;
 	string type = 3;
 	string language = 4;

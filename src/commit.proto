@@ -18,14 +18,6 @@ message CommitDetailTree {
 	string url = 2;
 }
 
-message CommitLanguage {
-	string ace_mode = 1;
-	string group = 2;
-	bool is_popular = 3;
-	bool is_unpopular = 4;
-	string type = 5;
-}
-
 message CommitLinguist {
 	string content_type = 1;
 	string disposition = 2;
@@ -43,7 +35,6 @@ message CommitLinguist {
 	int32 loc = 14;
 	int32 sloc = 15;
 	string type = 16;
-	CommitLanguage language = 17;
 }
 
 message CommitFramework {
@@ -55,7 +46,7 @@ message CommitLicense {
 	string name = 2;
 	string url = 3;
 	bool osiApproved = 4;
-	string proprietary = 5;
+	string license = 5;
 }
 
 message CommitFileDetail {

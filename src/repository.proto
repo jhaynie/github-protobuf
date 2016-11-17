@@ -75,24 +75,25 @@ message Repository {
 	int32 forks_count = 53;
 	int32 stargazers_count = 54;
 	int32 watchers_count = 55;
-	int32 size = 56;
-	string default_branch = 57;
-	int32 open_issues_count = 58;
-	bool has_issues = 59;
-	bool has_wiki = 60;
-	bool has_pages = 61;
-	bool has_downloads = 62;
-	string pushed_at = 63;
-	string created_at = 64;
-	string updated_at = 65;
-	RepositoryPermission permissions = 66;
-	int32 subscribers_count = 67;
-	User organization = 68;
-	Repository parent = 69;
-	Repository source = 70;
+	int32 network_count = 56;
+	int32 size = 57 [(gogoproto.customname) = "RepoSize"];
+	string default_branch = 58;
+	int32 open_issues_count = 59;
+	bool has_issues = 60;
+	bool has_wiki = 61;
+	bool has_pages = 62;
+	bool has_downloads = 63;
+	string pushed_at = 64;
+	string created_at = 65;
+	string updated_at = 66;
+	RepositoryPermission permissions = 67;
+	int32 subscribers_count = 68;
+	User organization = 69;
+	Repository parent = 70;
+	Repository source = 71;
 
 	//  application/vnd.github.polaris-preview
-	bool allow_rebase_merge = 71;
-	bool allow_squash_merge = 72;
-	bool allow_merge_commit = 73;
+	bool allow_rebase_merge = 72;
+	bool allow_squash_merge = 73;
+	bool allow_merge_commit = 74;
 }

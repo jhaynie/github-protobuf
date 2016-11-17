@@ -18,7 +18,7 @@ message Download {
 	int32 id = 3;
 	string name = 4;
 	string description = 5;
-	int32 size = 6;
+	int32 size = 6 [(gogoproto.customname) = "FileSize"];
 	int32 download_count = 7;
 	string content_type = 8;
 }

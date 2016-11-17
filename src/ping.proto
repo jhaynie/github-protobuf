@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package github;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+message Hook {
+	string type = 1;
+	int32 id = 2;
+	string name = 3;
+	bool active = 4;
+	repeated string events = 5;
+	map<string,string> config = 6;
+	string updated_at = 7;
+	string created_at = 8;
+	int32 integration_id = 9;
+}
+
+message Ping {
+	int32 hook_id = 1;
+	Hook hook = 2;
+}

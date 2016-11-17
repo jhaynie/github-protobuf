@@ -21,7 +21,7 @@ message Asset {
 	string label = 5;
 	string state = 6;
 	string content_type = 7;
-	int32 size = 8;
+	int32 size = 8 [(gogoproto.customname) = "FileSize"];
 	int32 download_count = 9;
 	string created_at = 10;
 	string updated_at = 11;
