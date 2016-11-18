@@ -1,7 +1,7 @@
 .PHONY: default
 .DEFAULT_GOAL := test
 
-VERSION := 1.0.3
+VERSION := 1.0.4
 NAME := github-protobuf
 PKG := jhaynie/$(NAME)
 
@@ -19,29 +19,19 @@ protoc-go:
 	@docker run --rm -v $(BASEDIR):/app -w /app znly/protoc --gofast_out=build/$(VERSION)/go --proto_path=/app/vendor/:src src/*.proto
 
 protoc-python:
-	@mkdir -p build/$(VERSION)/python
-	@cp $(BASEDIR)/src/*.proto build/$(VERSION)/python
-	@docker run --rm -v $(BASEDIR):/app -w /app znly/protoc --python_out=build/$(VERSION)/python --proto_path=/app/vendor/:src src/*.proto
+	@$(BASEDIR)/protoc.sh python python_out $(VERSION) ""
 
 protoc-java:
-	@mkdir -p build/$(VERSION)/java
-	@cp $(BASEDIR)/src/*.proto build/$(VERSION)/java
-	@docker run --rm -v $(BASEDIR):/app -w /app znly/protoc --java_out=build/$(VERSION)/java --proto_path=/app/vendor/:src src/*.proto
+	@$(BASEDIR)/protoc.sh java java_out $(VERSION) ""
 
 protoc-js:
-	@mkdir -p build/$(VERSION)/javascript
-	@cp $(BASEDIR)/src/*.proto build/$(VERSION)/javascript
-	@docker run --rm -v $(BASEDIR):/app -w /app znly/protoc --js_out=build/$(VERSION)/javascript --proto_path=/app/vendor/:src src/*.proto
+	@$(BASEDIR)/protoc.sh javascript js_out $(VERSION) "import_style=commonjs,binary:"
 
 protoc-ruby:
-	@mkdir -p build/$(VERSION)/ruby
-	@cp $(BASEDIR)/src/*.proto build/$(VERSION)/ruby
-	@docker run --rm -v $(BASEDIR):/app -w /app znly/protoc --ruby_out=build/$(VERSION)/ruby --proto_path=/app/vendor/:src src/*.proto
+	@$(BASEDIR)/protoc.sh ruby ruby_out $(VERSION) ""
 
 protoc-php:
-	@mkdir -p build/$(VERSION)/php
-	@cp $(BASEDIR)/src/*.proto build/$(VERSION)/php
-	@docker run --rm -v $(BASEDIR):/app -w /app znly/protoc --php_out=build/$(VERSION)/php --proto_path=/app/vendor/:src src/*.proto
+	@$(BASEDIR)/protoc.sh php php_out $(VERSION) ""
 
 test: protoc-go
 	@cp test/* build/$(VERSION)/go
