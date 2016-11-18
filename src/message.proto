@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package github;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+message Message {
+	int32 version = 1;
+	string timestamp = 2;
+	string id = 3;
+	string event = 4;
+	bytes payload = 5;
+	string context = 6;
+}
