@@ -1,9 +1,11 @@
 package github
 
 import (
+	"log"
 	"testing"
 	"encoding/json"
 	"github.com/golang/protobuf/proto"
+	"github.com/golang/protobuf/descriptor"
 )
 
 func TestMessage(t *testing.T) {
@@ -83,5 +85,8 @@ func TestMessage(t *testing.T) {
 		if pingEventT.HookId != 10746963 {
 			t.Error("pingEventT.HookId != 10746963")
 		}
+		we := &WatchEvent{}
+		_, fd := descriptor.ForMessage(we)
+		log.Println(fd.Field)
 	}
 }

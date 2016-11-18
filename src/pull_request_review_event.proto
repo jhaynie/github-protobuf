@@ -13,7 +13,7 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
 import "repository.proto";
-import "pullrequest.proto";
+import "pull_request.proto";
 
 message PullRequestReviewLink {
 	string html = 1;

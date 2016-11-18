@@ -1,7 +1,7 @@
 .PHONY: default
 .DEFAULT_GOAL := test
 
-VERSION := 1.0.5
+VERSION := 1.0.6
 NAME := github-protobuf
 PKG := jhaynie/$(NAME)
 
@@ -24,8 +24,10 @@ protoc-python:
 protoc-java:
 	@$(BASEDIR)/protoc.sh java java_out $(VERSION) ""
 
-protoc-js:
+protoc-js: protoc-go
+	@rm -rf build/$(VERSION)/javascript
 	@$(BASEDIR)/protoc.sh javascript js_out $(VERSION) "import_style=commonjs,binary:"
+	@$(BASEDIR)/genjson.sh $(VERSION)
 
 protoc-ruby:
 	@$(BASEDIR)/protoc.sh ruby ruby_out $(VERSION) ""
