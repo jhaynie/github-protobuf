@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/issues
+
+package github;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+import "user.proto";
+
+message Installation {
+	int32 id = 1;
+	User account = 2;
+	string access_tokens_url = 3;
+	string repositories_url = 4;
+	string html_url = 5;
+}
+
+message IntegrationInstallation {
+	string action = 1;
+	Installation installation = 2;
+	User sender = 3;
+}
