@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-// https://developer.github.com/v3/issues
+// https://developer.github.com/early-access/integrations/webhooks/#integrationinstallationevent
 
 package github;
 
