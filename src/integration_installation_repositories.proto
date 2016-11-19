@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// https://developer.github.com/early-access/integrations/webhooks/#integrationinstallationrepositoriesevent
+
+package github;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+import "user.proto";
+import "integration_installation.proto";
+
+message InstallationRepo {
+	int32 id = 1;
+	string name = 2;
+	string full_name = 3;
+}
+
+message IntegrationInstallationRepositories {
+	string action = 1;
+	Installation installation = 2;
+	string repository_selection = 3;
+	repeated InstallationRepo repositories_added = 4;
+	repeated InstallationRepo repositories_removed = 5;
+	User sender = 6;
+}
