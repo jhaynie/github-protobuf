@@ -135,8 +135,16 @@ func main() {
 							buffer.WriteString("		});\n")
 							buffer.WriteString("	}\n")
 						} else {
-							fmt.Println(field.GetTypeName())
-							panic("not sure what to do with this type")
+							// this is a list
+							if field.GetLabel() == d.FieldDescriptorProto_LABEL_REPEATED {
+								// fmt.Println(field)
+								buffer.WriteString(fmt.Sprintf("	if ('%s' in obj) {\n", fieldname))
+								buffer.WriteString(fmt.Sprintf("		this.%sList(obj.%s);\n", makeCamelCase("set", fieldname), fieldname))
+								buffer.WriteString("	}\n")
+							} else {
+								fmt.Println(field.GetTypeName())
+								panic("not sure what to do with this type")
+							}
 						}
 					} else {
 						nfn := makeJSName(filenames[field.GetTypeName()])
@@ -148,16 +156,32 @@ func main() {
 					}
 				}
 				case d.FieldDescriptorProto_TYPE_STRING: {
-					buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%s(obj.%s);\n", fieldname, setter, fieldname))
+					if field.GetLabel() == d.FieldDescriptorProto_LABEL_REPEATED {
+						buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%sList(obj.%s);\n", fieldname, setter, fieldname))
+					} else {
+						buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%s(obj.%s);\n", fieldname, setter, fieldname))
+					}
 				}
 				case d.FieldDescriptorProto_TYPE_BOOL: {
-					buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%s(_toBool(obj.%s));\n", fieldname, setter, fieldname))
+					if field.GetLabel() == d.FieldDescriptorProto_LABEL_REPEATED {
+						buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%sList(obj.%s.map(function(i){return _toBool(i);}));\n", fieldname, setter, fieldname))
+					} else {
+						buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%s(_toBool(obj.%s));\n", fieldname, setter, fieldname))
+					}
 				}
 				case d.FieldDescriptorProto_TYPE_INT32: {
-					buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%s(+obj.%s);\n", fieldname, setter, fieldname))
+					if field.GetLabel() == d.FieldDescriptorProto_LABEL_REPEATED {
+						buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%sList(obj.map(function(i){return +i;}));\n", fieldname, setter, fieldname))
+					} else {
+						buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%s(+obj.%s);\n", fieldname, setter, fieldname))
+					}
 				}
 				case d.FieldDescriptorProto_TYPE_BYTES: {
-					buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%s(obj.%s);\n", fieldname, setter, fieldname))
+					if field.GetLabel() == d.FieldDescriptorProto_LABEL_REPEATED {
+						buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%sList(obj.%s);\n", fieldname, setter, fieldname))
+					} else {
+						buffer.WriteString(fmt.Sprintf("	'%s' in obj && this.%s(obj.%s);\n", fieldname, setter, fieldname))
+					}
 				}
 			}
 		}
@@ -167,25 +191,54 @@ func main() {
 		buffer.WriteString(fmt.Sprintf("proto%s.prototype.toJSON = function() {\n", k))
 		buffer.WriteString("	var obj = this.toObject();\n")
 		for _, field := range fielddef.Field {
-			json := field.GetJsonName()
+			fieldname := field.GetJsonName()
+			jsonname := field.GetName()
+			// fmt.Println(field)
 			switch *field.Type {
 				case d.FieldDescriptorProto_TYPE_MESSAGE: {
 					md := descriptors[field.GetTypeName()]
 					if md == nil {
 						if strings.HasSuffix(field.GetTypeName(), "Entry") {
 							// this is a map
-							mapGetter := makeCamelCase("get", fmt.Sprintf("%sMap", field.GetName()))
+							mapGetter := makeCamelCase("get", fmt.Sprintf("%sMap", fieldname))
 							// fmt.Println(stringify(field))
-							buffer.WriteString(fmt.Sprintf("	var %s = this.%s();\n", json, mapGetter))
-							buffer.WriteString(fmt.Sprintf("	obj.%s = {};\n", *field.Name))
-							buffer.WriteString(fmt.Sprintf("	delete obj.%sMap;\n", field.GetName()))
-							buffer.WriteString(fmt.Sprintf("	%s.forEach(function(v, k) {\n", json))
-							buffer.WriteString(fmt.Sprintf("		obj.%s[k] = v;\n", *field.Name))
-							buffer.WriteString("	});\n")
+							buffer.WriteString(fmt.Sprintf("	if ('%sMap' in obj) {\n", fieldname))
+							buffer.WriteString(fmt.Sprintf("		var %s = this.%s();\n", jsonname, mapGetter))
+							buffer.WriteString(fmt.Sprintf("		obj.%s = {};\n", jsonname))
+							buffer.WriteString(fmt.Sprintf("		delete obj.%sMap;\n", fieldname))
+							buffer.WriteString(fmt.Sprintf("		%s.forEach(function(v, k) {\n", jsonname))
+							buffer.WriteString(fmt.Sprintf("			obj.%s[k] = v;\n", jsonname))
+							buffer.WriteString("		});\n")
+							buffer.WriteString("	}\n")
 						} else {
-							fmt.Println(field.GetTypeName())
-							panic("not sure what to do with this type")
+							if field.GetLabel() == d.FieldDescriptorProto_LABEL_REPEATED {
+								buffer.WriteString(fmt.Sprintf("	if ('%sList' in obj) {\n", fieldname))
+								buffer.WriteString(fmt.Sprintf("		obj.%s = obj.%sList;\n", jsonname, fieldname))
+								buffer.WriteString(fmt.Sprintf("		delete obj.%s;\n", fieldname))
+								buffer.WriteString("	}\n")
+							} else {
+								fmt.Println(field.GetTypeName())
+								panic("not sure what to do with this type")
+							}
 						}
+					} else {
+						buffer.WriteString(fmt.Sprintf("	if ('%s' in obj) {\n", fieldname))
+						getter := makeCamelCase("get", fieldname)
+						buffer.WriteString(fmt.Sprintf("		obj.%s = this.%s().toJSON();\n", jsonname, getter))
+						buffer.WriteString("	}\n")
+					}
+				}
+				default: {
+					if field.GetLabel() == d.FieldDescriptorProto_LABEL_REPEATED {
+						buffer.WriteString(fmt.Sprintf("	if ('%sList' in obj) {\n", fieldname))
+						buffer.WriteString(fmt.Sprintf("		obj.%s = obj.%sList;\n", jsonname, fieldname))
+						buffer.WriteString(fmt.Sprintf("		delete obj.%sList;\n", fieldname))
+						buffer.WriteString("	}\n")
+					} else {
+						buffer.WriteString(fmt.Sprintf("	if ('%s' in obj) {\n", fieldname))
+						buffer.WriteString(fmt.Sprintf("		obj.%s = obj.%s;\n", jsonname, fieldname))
+						buffer.WriteString(fmt.Sprintf("		delete obj.%s;\n", fieldname))
+						buffer.WriteString("	}\n")
 					}
 				}
 			}
