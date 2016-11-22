@@ -14,6 +14,7 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "repository.proto";
 import "deployment.proto";
+import "installation.proto";
 
 message DeploymentStatus {
 	string url = 1;
@@ -33,4 +34,5 @@ message DeploymentStatusEvent {
 	Deployment deployment = 2;
 	Repository repository = 3;
 	User sender = 4;
+	Installation installation = 5;
 }

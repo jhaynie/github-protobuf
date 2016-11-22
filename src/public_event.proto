@@ -13,8 +13,10 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
 import "repository.proto";
+import "installation.proto";
 
 message PublicEvent {
 	Repository repository = 1;
 	User sender = 2;
+	Installation installation = 3;
 }

@@ -14,10 +14,12 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "issue.proto";
 import "repository.proto";
+import "installation.proto";
 
 message IssuesEvent {
 	string action = 1;
 	Issue issue = 2;
 	Repository repository = 3;
 	User sender = 4;
+	Installation installation = 5;
 }

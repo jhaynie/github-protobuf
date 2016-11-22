@@ -15,6 +15,7 @@ import "user.proto";
 import "issue.proto";
 import "comment.proto";
 import "repository.proto";
+import "installation.proto";
 
 message IssueCommentEvent {
 	string action = 1;
@@ -22,4 +23,5 @@ message IssueCommentEvent {
 	Comment comment = 3;
 	Repository repository = 4;
 	User sender = 5;
+	Installation installation = 6;
 }

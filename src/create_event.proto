@@ -13,6 +13,7 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
 import "repository.proto";
+import "installation.proto";
 
 message CreateEvent {
 	string ref = 1;
@@ -22,4 +23,5 @@ message CreateEvent {
 	string pusher_type = 5;
 	Repository repository = 6;
 	User sender = 7;
+	Installation installation = 8;
 }

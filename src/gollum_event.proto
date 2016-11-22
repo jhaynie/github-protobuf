@@ -13,6 +13,7 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
 import "repository.proto";
+import "installation.proto";
 
 message GollumPage {
 	string page_name = 1;
@@ -27,4 +28,5 @@ message GollumEvent {
 	repeated GollumPage pages = 1;
 	Repository repository = 2;
 	User sender = 3;
+	Installation installation = 4;
 }

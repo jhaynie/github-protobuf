@@ -13,7 +13,9 @@ option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
+import "installation.proto";
 
 message FollowEvent {
 	User target = 1;
+	Installation installation = 2;
 }

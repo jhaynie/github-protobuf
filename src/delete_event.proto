@@ -13,11 +13,13 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
 import "repository.proto";
+import "installation.proto";
 
 message DeleteEvent {
 	string ref = 1;
 	string ref_type = 2;
 	string pusher_type = 3;
 	Repository repository = 4;
-	User sender = 7;
+	User sender = 5;
+	Installation installation = 6;
 }

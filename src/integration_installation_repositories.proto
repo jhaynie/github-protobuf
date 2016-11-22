@@ -12,7 +12,7 @@ option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
-import "integration_installation.proto";
+import "installation.proto";
 
 message InstallationRepo {
 	int32 id = 1;

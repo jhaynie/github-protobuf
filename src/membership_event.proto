@@ -13,6 +13,7 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
 import "team.proto";
+import "installation.proto";
 
 message MembershipEvent {
 	string action = 1;
@@ -21,4 +22,5 @@ message MembershipEvent {
 	User sender = 4;
 	Team team = 5;
 	User organization = 6;
+	Installation installation = 7;
 }

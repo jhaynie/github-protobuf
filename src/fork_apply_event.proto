@@ -12,8 +12,11 @@ option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.goproto_getters_all) = false;
 
+import "installation.proto";
+
 message ForkApplyEvent {
 	string head = 1;
 	string header = 2;
 	string after = 3;
+	Installation installation = 4;
 }

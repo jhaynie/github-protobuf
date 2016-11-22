@@ -12,6 +12,8 @@ option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.goproto_getters_all) = false;
 
+import "installation.proto";
+
 message Download {
 	string url = 1;
 	string html_url = 2;
@@ -25,4 +27,5 @@ message Download {
 
 message DownloadEvent {
 	Download download = 1;
+	Installation installation = 2;
 }

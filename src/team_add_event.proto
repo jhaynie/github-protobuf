@@ -14,10 +14,12 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "team.proto";
 import "repository.proto";
+import "installation.proto";
 
 message TeamAddEvent {
 	Team team = 1;
 	Repository repository = 2;
 	User organization = 3;
 	User sender = 4;
+	Installation installation = 5;
 }

@@ -14,10 +14,12 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "comment.proto";
 import "repository.proto";
+import "installation.proto";
 
 message CommitCommentEvent {
 	string action = 1;
 	Comment comment = 2;
 	Repository repository = 3;
 	User sender = 4;
+	Installation installation = 5;
 }

@@ -14,6 +14,7 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "commit_user.proto";
 import "repository.proto";
+import "installation.proto";
 
 message PushCommit {
 	string sha = 1;
@@ -43,4 +44,5 @@ message PushEvent {
 	Repository repository = 11;
 	CommitUser pusher = 12;
 	User sender = 13;
+	Installation installation = 14;
 }

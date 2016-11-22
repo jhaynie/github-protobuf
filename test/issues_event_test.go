@@ -190,3 +190,173 @@ func TestIssuesEvent(t *testing.T) {
 		}
 	}
 }
+
+func TestIssuesEventWithIntegration(t *testing.T) {
+	event := `{
+	  "action": "opened",
+	  "issue": {
+	    "url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/issues/9",
+	    "repository_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka",
+	    "labels_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/issues/9/labels{/name}",
+	    "comments_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/issues/9/comments",
+	    "events_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/issues/9/events",
+	    "html_url": "https://github.com/jhaynie/pinpoint-webhook-kafka/issues/9",
+	    "id": 190896521,
+	    "number": 9,
+	    "title": "test",
+	    "user": {
+	      "login": "jhaynie",
+	      "id": 6027,
+	      "avatar_url": "https://avatars.githubusercontent.com/u/6027?v=3",
+	      "gravatar_id": "",
+	      "url": "https://api.github.com/users/jhaynie",
+	      "html_url": "https://github.com/jhaynie",
+	      "followers_url": "https://api.github.com/users/jhaynie/followers",
+	      "following_url": "https://api.github.com/users/jhaynie/following{/other_user}",
+	      "gists_url": "https://api.github.com/users/jhaynie/gists{/gist_id}",
+	      "starred_url": "https://api.github.com/users/jhaynie/starred{/owner}{/repo}",
+	      "subscriptions_url": "https://api.github.com/users/jhaynie/subscriptions",
+	      "organizations_url": "https://api.github.com/users/jhaynie/orgs",
+	      "repos_url": "https://api.github.com/users/jhaynie/repos",
+	      "events_url": "https://api.github.com/users/jhaynie/events{/privacy}",
+	      "received_events_url": "https://api.github.com/users/jhaynie/received_events",
+	      "type": "User",
+	      "site_admin": false
+	    },
+	    "labels": [
+
+	    ],
+	    "state": "open",
+	    "locked": false,
+	    "assignee": null,
+	    "assignees": [
+
+	    ],
+	    "milestone": null,
+	    "comments": 0,
+	    "created_at": "2016-11-22T03:09:53Z",
+	    "updated_at": "2016-11-22T03:09:53Z",
+	    "closed_at": null,
+	    "body": "test"
+	  },
+	  "repository": {
+	    "id": 70075614,
+	    "name": "pinpoint-webhook-kafka",
+	    "full_name": "jhaynie/pinpoint-webhook-kafka",
+	    "owner": {
+	      "login": "jhaynie",
+	      "id": 6027,
+	      "avatar_url": "https://avatars.githubusercontent.com/u/6027?v=3",
+	      "gravatar_id": "",
+	      "url": "https://api.github.com/users/jhaynie",
+	      "html_url": "https://github.com/jhaynie",
+	      "followers_url": "https://api.github.com/users/jhaynie/followers",
+	      "following_url": "https://api.github.com/users/jhaynie/following{/other_user}",
+	      "gists_url": "https://api.github.com/users/jhaynie/gists{/gist_id}",
+	      "starred_url": "https://api.github.com/users/jhaynie/starred{/owner}{/repo}",
+	      "subscriptions_url": "https://api.github.com/users/jhaynie/subscriptions",
+	      "organizations_url": "https://api.github.com/users/jhaynie/orgs",
+	      "repos_url": "https://api.github.com/users/jhaynie/repos",
+	      "events_url": "https://api.github.com/users/jhaynie/events{/privacy}",
+	      "received_events_url": "https://api.github.com/users/jhaynie/received_events",
+	      "type": "User",
+	      "site_admin": false
+	    },
+	    "private": true,
+	    "html_url": "https://github.com/jhaynie/pinpoint-webhook-kafka",
+	    "description": "new worker stuff",
+	    "fork": false,
+	    "url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka",
+	    "forks_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/forks",
+	    "keys_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/keys{/key_id}",
+	    "collaborators_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/collaborators{/collaborator}",
+	    "teams_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/teams",
+	    "hooks_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/hooks",
+	    "issue_events_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/issues/events{/number}",
+	    "events_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/events",
+	    "assignees_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/assignees{/user}",
+	    "branches_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/branches{/branch}",
+	    "tags_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/tags",
+	    "blobs_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/git/blobs{/sha}",
+	    "git_tags_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/git/tags{/sha}",
+	    "git_refs_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/git/refs{/sha}",
+	    "trees_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/git/trees{/sha}",
+	    "statuses_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/statuses/{sha}",
+	    "languages_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/languages",
+	    "stargazers_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/stargazers",
+	    "contributors_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/contributors",
+	    "subscribers_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/subscribers",
+	    "subscription_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/subscription",
+	    "commits_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/commits{/sha}",
+	    "git_commits_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/git/commits{/sha}",
+	    "comments_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/comments{/number}",
+	    "issue_comment_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/issues/comments{/number}",
+	    "contents_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/contents/{+path}",
+	    "compare_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/compare/{base}...{head}",
+	    "merges_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/merges",
+	    "archive_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/{archive_format}{/ref}",
+	    "downloads_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/downloads",
+	    "issues_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/issues{/number}",
+	    "pulls_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/pulls{/number}",
+	    "milestones_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/milestones{/number}",
+	    "notifications_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/notifications{?since,all,participating}",
+	    "labels_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/labels{/name}",
+	    "releases_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/releases{/id}",
+	    "deployments_url": "https://api.github.com/repos/jhaynie/pinpoint-webhook-kafka/deployments",
+	    "created_at": "2016-10-05T15:54:37Z",
+	    "updated_at": "2016-10-24T04:04:11Z",
+	    "pushed_at": "2016-11-22T03:01:54Z",
+	    "git_url": "git://github.com/jhaynie/pinpoint-webhook-kafka.git",
+	    "ssh_url": "git@github.com:jhaynie/pinpoint-webhook-kafka.git",
+	    "clone_url": "https://github.com/jhaynie/pinpoint-webhook-kafka.git",
+	    "svn_url": "https://github.com/jhaynie/pinpoint-webhook-kafka",
+	    "homepage": null,
+	    "size": 2880,
+	    "stargazers_count": 0,
+	    "watchers_count": 0,
+	    "language": "Go",
+	    "has_issues": true,
+	    "has_downloads": true,
+	    "has_wiki": true,
+	    "has_pages": false,
+	    "forks_count": 0,
+	    "mirror_url": null,
+	    "open_issues_count": 1,
+	    "forks": 0,
+	    "open_issues": 1,
+	    "watchers": 0,
+	    "default_branch": "master"
+	  },
+	  "sender": {
+	    "login": "jhaynie",
+	    "id": 6027,
+	    "avatar_url": "https://avatars.githubusercontent.com/u/6027?v=3",
+	    "gravatar_id": "",
+	    "url": "https://api.github.com/users/jhaynie",
+	    "html_url": "https://github.com/jhaynie",
+	    "followers_url": "https://api.github.com/users/jhaynie/followers",
+	    "following_url": "https://api.github.com/users/jhaynie/following{/other_user}",
+	    "gists_url": "https://api.github.com/users/jhaynie/gists{/gist_id}",
+	    "starred_url": "https://api.github.com/users/jhaynie/starred{/owner}{/repo}",
+	    "subscriptions_url": "https://api.github.com/users/jhaynie/subscriptions",
+	    "organizations_url": "https://api.github.com/users/jhaynie/orgs",
+	    "repos_url": "https://api.github.com/users/jhaynie/repos",
+	    "events_url": "https://api.github.com/users/jhaynie/events{/privacy}",
+	    "received_events_url": "https://api.github.com/users/jhaynie/received_events",
+	    "type": "User",
+	    "site_admin": false
+	  },
+	  "installation": {
+	    "id": 3342
+	  }
+	}`
+	var issuesEvent IssuesEvent
+	err := json.Unmarshal([]byte(event), &issuesEvent)
+	if err != nil {
+		t.Error(err)
+	} else {
+		if issuesEvent.Installation.Id != 3342 {
+			t.Error("issuesEvent.Installation.Id != 3342")
+		}
+	}
+}

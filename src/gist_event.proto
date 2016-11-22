@@ -13,6 +13,7 @@ option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
+import "installation.proto";
 
 message GistFile {
 	int32 size = 1 [(gogoproto.customname) = "FileSize"];
@@ -69,4 +70,5 @@ message Gist {
 message GistEvent {
 	string action = 1;
 	Gist gist = 2;
+	Installation installation = 3;
 }

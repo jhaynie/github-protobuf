@@ -14,6 +14,7 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "repository.proto";
 import "pull_request.proto";
+import "installation.proto";
 
 message PullRequestEvent {
 	string action = 1;
@@ -21,4 +22,5 @@ message PullRequestEvent {
 	PullRequest pull_request = 3;
 	Repository repository = 4;
 	User sender = 5;
+	Installation installation = 6;
 }
