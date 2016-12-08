@@ -20,6 +20,13 @@ message Label {
 	string color = 3;
 }
 
+message PullRequestRef {
+	string url = 1;
+	string html_url = 2;
+	string diff_url = 3;
+	string patch_url = 4;
+}
+
 message Issue {
 	int32 id = 1;
 	string url = 2;
@@ -42,4 +49,6 @@ message Issue {
 	string created_at = 19;
 	string updated_at = 20;
 	User closed_by = 21;
+	PullRequestRef pull_request = 22;
+	repeated User assignees = 23;
 }

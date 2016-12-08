@@ -360,3 +360,210 @@ func TestIssuesEventWithIntegration(t *testing.T) {
 		}
 	}
 }
+
+func TestIssuesEventWithPR(t *testing.T) {
+	event := `{
+	  "action": "created",
+	  "issue": {
+	    "url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues/100",
+	    "repository_url": "https://api.github.com/repos/jhaynie/pinpoint-web",
+	    "labels_url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues/100/labels{/name}",
+	    "comments_url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues/100/comments",
+	    "events_url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues/100/events",
+	    "html_url": "https://github.com/jhaynie/pinpoint-web/pull/100",
+	    "id": 194220572,
+	    "number": 100,
+	    "title": "test for PR",
+	    "user": {
+	      "login": "jhaynie",
+	      "id": 6027,
+	      "avatar_url": "https://avatars.githubusercontent.com/u/6027?v=3",
+	      "gravatar_id": "",
+	      "url": "https://api.github.com/users/jhaynie",
+	      "html_url": "https://github.com/jhaynie",
+	      "followers_url": "https://api.github.com/users/jhaynie/followers",
+	      "following_url": "https://api.github.com/users/jhaynie/following{/other_user}",
+	      "gists_url": "https://api.github.com/users/jhaynie/gists{/gist_id}",
+	      "starred_url": "https://api.github.com/users/jhaynie/starred{/owner}{/repo}",
+	      "subscriptions_url": "https://api.github.com/users/jhaynie/subscriptions",
+	      "organizations_url": "https://api.github.com/users/jhaynie/orgs",
+	      "repos_url": "https://api.github.com/users/jhaynie/repos",
+	      "events_url": "https://api.github.com/users/jhaynie/events{/privacy}",
+	      "received_events_url": "https://api.github.com/users/jhaynie/received_events",
+	      "type": "User",
+	      "site_admin": false
+	    },
+	    "labels": [
+
+	    ],
+	    "state": "open",
+	    "locked": false,
+	    "assignee": null,
+	    "assignees": [
+
+	    ],
+	    "milestone": null,
+	    "comments": 0,
+	    "created_at": "2016-12-08T01:07:10Z",
+	    "updated_at": "2016-12-08T01:07:50Z",
+	    "closed_at": null,
+	    "pull_request": {
+	      "url": "https://api.github.com/repos/jhaynie/pinpoint-web/pulls/100",
+	      "html_url": "https://github.com/jhaynie/pinpoint-web/pull/100",
+	      "diff_url": "https://github.com/jhaynie/pinpoint-web/pull/100.diff",
+	      "patch_url": "https://github.com/jhaynie/pinpoint-web/pull/100.patch"
+	    },
+	    "body": "test for PR"
+	  },
+	  "comment": {
+	    "url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues/comments/265623454",
+	    "html_url": "https://github.com/jhaynie/pinpoint-web/pull/100#issuecomment-265623454",
+	    "issue_url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues/100",
+	    "id": 265623454,
+	    "user": {
+	      "login": "jhaynie",
+	      "id": 6027,
+	      "avatar_url": "https://avatars.githubusercontent.com/u/6027?v=3",
+	      "gravatar_id": "",
+	      "url": "https://api.github.com/users/jhaynie",
+	      "html_url": "https://github.com/jhaynie",
+	      "followers_url": "https://api.github.com/users/jhaynie/followers",
+	      "following_url": "https://api.github.com/users/jhaynie/following{/other_user}",
+	      "gists_url": "https://api.github.com/users/jhaynie/gists{/gist_id}",
+	      "starred_url": "https://api.github.com/users/jhaynie/starred{/owner}{/repo}",
+	      "subscriptions_url": "https://api.github.com/users/jhaynie/subscriptions",
+	      "organizations_url": "https://api.github.com/users/jhaynie/orgs",
+	      "repos_url": "https://api.github.com/users/jhaynie/repos",
+	      "events_url": "https://api.github.com/users/jhaynie/events{/privacy}",
+	      "received_events_url": "https://api.github.com/users/jhaynie/received_events",
+	      "type": "User",
+	      "site_admin": false
+	    },
+	    "created_at": "2016-12-08T01:07:50Z",
+	    "updated_at": "2016-12-08T01:07:50Z",
+	    "body": "test comment on PR"
+	  },
+	  "repository": {
+	    "id": 63737890,
+	    "name": "pinpoint-web",
+	    "full_name": "jhaynie/pinpoint-web",
+	    "owner": {
+	      "login": "jhaynie",
+	      "id": 6027,
+	      "avatar_url": "https://avatars.githubusercontent.com/u/6027?v=3",
+	      "gravatar_id": "",
+	      "url": "https://api.github.com/users/jhaynie",
+	      "html_url": "https://github.com/jhaynie",
+	      "followers_url": "https://api.github.com/users/jhaynie/followers",
+	      "following_url": "https://api.github.com/users/jhaynie/following{/other_user}",
+	      "gists_url": "https://api.github.com/users/jhaynie/gists{/gist_id}",
+	      "starred_url": "https://api.github.com/users/jhaynie/starred{/owner}{/repo}",
+	      "subscriptions_url": "https://api.github.com/users/jhaynie/subscriptions",
+	      "organizations_url": "https://api.github.com/users/jhaynie/orgs",
+	      "repos_url": "https://api.github.com/users/jhaynie/repos",
+	      "events_url": "https://api.github.com/users/jhaynie/events{/privacy}",
+	      "received_events_url": "https://api.github.com/users/jhaynie/received_events",
+	      "type": "User",
+	      "site_admin": false
+	    },
+	    "private": true,
+	    "html_url": "https://github.com/jhaynie/pinpoint-web",
+	    "description": "Pinpoint web + api server",
+	    "fork": false,
+	    "url": "https://api.github.com/repos/jhaynie/pinpoint-web",
+	    "forks_url": "https://api.github.com/repos/jhaynie/pinpoint-web/forks",
+	    "keys_url": "https://api.github.com/repos/jhaynie/pinpoint-web/keys{/key_id}",
+	    "collaborators_url": "https://api.github.com/repos/jhaynie/pinpoint-web/collaborators{/collaborator}",
+	    "teams_url": "https://api.github.com/repos/jhaynie/pinpoint-web/teams",
+	    "hooks_url": "https://api.github.com/repos/jhaynie/pinpoint-web/hooks",
+	    "issue_events_url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues/events{/number}",
+	    "events_url": "https://api.github.com/repos/jhaynie/pinpoint-web/events",
+	    "assignees_url": "https://api.github.com/repos/jhaynie/pinpoint-web/assignees{/user}",
+	    "branches_url": "https://api.github.com/repos/jhaynie/pinpoint-web/branches{/branch}",
+	    "tags_url": "https://api.github.com/repos/jhaynie/pinpoint-web/tags",
+	    "blobs_url": "https://api.github.com/repos/jhaynie/pinpoint-web/git/blobs{/sha}",
+	    "git_tags_url": "https://api.github.com/repos/jhaynie/pinpoint-web/git/tags{/sha}",
+	    "git_refs_url": "https://api.github.com/repos/jhaynie/pinpoint-web/git/refs{/sha}",
+	    "trees_url": "https://api.github.com/repos/jhaynie/pinpoint-web/git/trees{/sha}",
+	    "statuses_url": "https://api.github.com/repos/jhaynie/pinpoint-web/statuses/{sha}",
+	    "languages_url": "https://api.github.com/repos/jhaynie/pinpoint-web/languages",
+	    "stargazers_url": "https://api.github.com/repos/jhaynie/pinpoint-web/stargazers",
+	    "contributors_url": "https://api.github.com/repos/jhaynie/pinpoint-web/contributors",
+	    "subscribers_url": "https://api.github.com/repos/jhaynie/pinpoint-web/subscribers",
+	    "subscription_url": "https://api.github.com/repos/jhaynie/pinpoint-web/subscription",
+	    "commits_url": "https://api.github.com/repos/jhaynie/pinpoint-web/commits{/sha}",
+	    "git_commits_url": "https://api.github.com/repos/jhaynie/pinpoint-web/git/commits{/sha}",
+	    "comments_url": "https://api.github.com/repos/jhaynie/pinpoint-web/comments{/number}",
+	    "issue_comment_url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues/comments{/number}",
+	    "contents_url": "https://api.github.com/repos/jhaynie/pinpoint-web/contents/{+path}",
+	    "compare_url": "https://api.github.com/repos/jhaynie/pinpoint-web/compare/{base}...{head}",
+	    "merges_url": "https://api.github.com/repos/jhaynie/pinpoint-web/merges",
+	    "archive_url": "https://api.github.com/repos/jhaynie/pinpoint-web/{archive_format}{/ref}",
+	    "downloads_url": "https://api.github.com/repos/jhaynie/pinpoint-web/downloads",
+	    "issues_url": "https://api.github.com/repos/jhaynie/pinpoint-web/issues{/number}",
+	    "pulls_url": "https://api.github.com/repos/jhaynie/pinpoint-web/pulls{/number}",
+	    "milestones_url": "https://api.github.com/repos/jhaynie/pinpoint-web/milestones{/number}",
+	    "notifications_url": "https://api.github.com/repos/jhaynie/pinpoint-web/notifications{?since,all,participating}",
+	    "labels_url": "https://api.github.com/repos/jhaynie/pinpoint-web/labels{/name}",
+	    "releases_url": "https://api.github.com/repos/jhaynie/pinpoint-web/releases{/id}",
+	    "deployments_url": "https://api.github.com/repos/jhaynie/pinpoint-web/deployments",
+	    "created_at": "2016-07-20T00:50:16Z",
+	    "updated_at": "2016-10-24T18:38:43Z",
+	    "pushed_at": "2016-12-08T01:07:10Z",
+	    "git_url": "git://github.com/jhaynie/pinpoint-web.git",
+	    "ssh_url": "git@github.com:jhaynie/pinpoint-web.git",
+	    "clone_url": "https://github.com/jhaynie/pinpoint-web.git",
+	    "svn_url": "https://github.com/jhaynie/pinpoint-web",
+	    "homepage": null,
+	    "size": 1225,
+	    "stargazers_count": 0,
+	    "watchers_count": 0,
+	    "language": "JavaScript",
+	    "has_issues": true,
+	    "has_downloads": true,
+	    "has_wiki": false,
+	    "has_pages": false,
+	    "forks_count": 0,
+	    "mirror_url": null,
+	    "open_issues_count": 19,
+	    "forks": 0,
+	    "open_issues": 19,
+	    "watchers": 0,
+	    "default_branch": "master"
+	  },
+	  "sender": {
+	    "login": "jhaynie",
+	    "id": 6027,
+	    "avatar_url": "https://avatars.githubusercontent.com/u/6027?v=3",
+	    "gravatar_id": "",
+	    "url": "https://api.github.com/users/jhaynie",
+	    "html_url": "https://github.com/jhaynie",
+	    "followers_url": "https://api.github.com/users/jhaynie/followers",
+	    "following_url": "https://api.github.com/users/jhaynie/following{/other_user}",
+	    "gists_url": "https://api.github.com/users/jhaynie/gists{/gist_id}",
+	    "starred_url": "https://api.github.com/users/jhaynie/starred{/owner}{/repo}",
+	    "subscriptions_url": "https://api.github.com/users/jhaynie/subscriptions",
+	    "organizations_url": "https://api.github.com/users/jhaynie/orgs",
+	    "repos_url": "https://api.github.com/users/jhaynie/repos",
+	    "events_url": "https://api.github.com/users/jhaynie/events{/privacy}",
+	    "received_events_url": "https://api.github.com/users/jhaynie/received_events",
+	    "type": "User",
+	    "site_admin": false
+	  },
+	  "installation": {
+	    "id": 4137
+	  }
+	}`
+	var issuesEvent IssuesEvent
+	err := json.Unmarshal([]byte(event), &issuesEvent)
+	if err != nil {
+		t.Error(err)
+	} else {
+		if issuesEvent.Installation.Id != 4137 {
+			t.Error("issuesEvent.Installation.Id != 4137")
+		}
+		if issuesEvent.Issue.PullRequest.Url != "https://api.github.com/repos/jhaynie/pinpoint-web/pulls/100" {
+			t.Error("issuesEvent.Issue.PullRequest.Url != https://api.github.com/repos/jhaynie/pinpoint-web/pulls/100")
+		}
+	}
+}
