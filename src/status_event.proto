@@ -61,4 +61,5 @@ message StatusEvent {
 	Repository repository = 12;
 	User sender = 13;
 	Installation installation = 14;
+	User organization = 15;
 }

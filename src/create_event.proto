@@ -24,4 +24,5 @@ message CreateEvent {
 	Repository repository = 6;
 	User sender = 7;
 	Installation installation = 8;
+	User organization = 9;
 }

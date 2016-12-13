@@ -18,16 +18,17 @@ import "installation.proto";
 
 message PushCommit {
 	string sha = 1;
-	string tree_id = 2;
-	bool distinct = 3;
-	string message = 4;
-	string timestamp = 5;
-	string url = 6;
-	CommitUser author = 7;
-	CommitUser committer = 8;
-	repeated string added = 9;
-	repeated string removed = 10;
-	repeated string modified = 11;
+	string id = 2;
+	string tree_id = 3;
+	bool distinct = 4;
+	string message = 5;
+	string timestamp = 6;
+	string url = 7;
+	CommitUser author = 8;
+	CommitUser committer = 9;
+	repeated string added = 10;
+	repeated string removed = 11;
+	repeated string modified = 12;
 }
 
 message PushEvent {
@@ -45,4 +46,5 @@ message PushEvent {
 	CommitUser pusher = 12;
 	User sender = 13;
 	Installation installation = 14;
+	User organization = 15;
 }

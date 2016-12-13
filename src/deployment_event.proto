@@ -21,4 +21,5 @@ message DeploymentEvent {
 	Repository repository = 2;
 	User sender = 3;
 	Installation installation = 4;
+	User organization = 5;
 }

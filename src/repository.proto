@@ -97,3 +97,5 @@ message Repository {
 	bool allow_squash_merge = 73;
 	bool allow_merge_commit = 74;
 }
+
+//NOTE: organization can also be a string !!

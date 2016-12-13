@@ -43,4 +43,5 @@ message PullRequestReviewEvent {
 	Repository repository = 4;
 	User sender = 5;
 	Installation installation = 6;
+	User organization = 7;
 }

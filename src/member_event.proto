@@ -21,4 +21,5 @@ message MemberEvent {
 	Repository repository = 3;
 	User sender = 4;
 	Installation installation = 5;
+	User organization = 6;
 }
