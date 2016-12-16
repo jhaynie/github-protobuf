@@ -34,7 +34,9 @@ message CommitLinguist {
 	bool is_viewable = 13;
 	int32 loc = 14;
 	int32 sloc = 15;
-	string type = 16;
+	int32 comments = 16;
+	int32 blanks = 17;
+	string type = 18;
 }
 
 message CommitFramework {

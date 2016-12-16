@@ -1193,3 +1193,89 @@ func TestCommitEventWithProprietaryLicense(t *testing.T) {
 		}
 	}
 }
+
+func TestCommitEventWithExtendedLinguist(t *testing.T) {
+	event := `{
+		"commit": {
+			"author": {
+				"date": "2016-01-29T21:28:59Z",
+				"email": "btford@xxx.com",
+				"name": "Brian Ford"
+			},
+			"comment_count": 0,
+			"committer": {
+				"date": "2016-02-02T21:58:51Z",
+				"email": "alexeagle@xxx.com",
+				"name": "Alex Eagle"
+			},
+			"message": "build(router): refactor angular1 router build script",
+			"tree": {
+				"sha": "1a8bc0ee21588017d49c3f28ac893dca382d85bc",
+				"url": "https://api.github.com/repos/angular/angular/git/trees/1a8bc0ee21588017d49c3f28ac893dca382d85bc"
+			},
+			"url": "https://api.github.com/repos/angular/angular/git/commits/6acc99729c7b3f1ffa480fb7e5b585754f197e17"
+		},
+		"files": [
+			{
+				"additions": 5,
+				"binary": false,
+				"body": "",
+				"commit": "6acc99729c7b3f1ffa480fb7e5b585754f197e17",
+				"deletions": 1,
+				"filename": "gulpfile.js",
+				"id": "1e3c6de470e54bfebf1a74fa1bbfd2683a9e7d48",
+				"language": "JavaScript",
+				"linguist": {
+					"content_type": "text/plain; charset=iso-8859-1",
+					"disposition": "inline",
+					"extname": ".js",
+					"is_binary": false,
+					"is_documentation": false,
+					"is_generated": true,
+					"is_high_ratio_of_long_lines": true,
+					"is_image": false,
+					"is_large": false,
+					"is_safe_to_colorize": false,
+					"is_text": true,
+					"is_vendored": false,
+					"is_viewable": true,
+					"language": {
+						"ace_mode": "javascript",
+						"group": "JavaScript",
+						"is_popular": true,
+						"is_unpopular": false,
+						"type": "programming"
+					},
+					"loc": 1,
+					"sloc": 1,
+					"comments": 2,
+					"blanks": 1,
+					"type": "text"
+				}
+			}
+		],
+		"id": "6acc99729c7b3f1ffa480fb7e5b585754f197e17",
+		"parents": [
+			{
+				"sha": "99e6500a2d862729654e91db5a9f24ead306db1a",
+				"url": "https://api.github.com/repos/angular/angular/commits/99e6500a2d862729654e91db5a9f24ead306db1a"
+			}
+		],
+		"repo": {
+			"id": 24195339
+		},
+		"sha": "6acc99729c7b3f1ffa480fb7e5b585754f197e17"
+	}`
+	var commit Commit
+	err := json.Unmarshal([]byte(event), &commit)
+	if err != nil {
+		t.Error(err)
+	} else {
+		if commit.Files[0].Linguist.Comments != 2 {
+			t.Error("linguist comments != 2")
+		}
+		if commit.Files[0].Linguist.Blanks != 1 {
+			t.Error("linguist blanks != 1")
+		}
+	}
+}
