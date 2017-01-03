@@ -47,4 +47,5 @@ message User {
 	int32 following = 33;
 	string created_at = 34;
 	string updated_at = 35;
+	int32 org_id = 36;
 }
