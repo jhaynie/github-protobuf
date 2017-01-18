@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/repos/
+
+package github;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+message RepositoryPermission {
+	bool admin = 1;
+	bool push = 2;
+	bool pull = 3;
+}

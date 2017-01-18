@@ -5,6 +5,7 @@ syntax = "proto3";
 package github;
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "repository_permission.proto";
 
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
@@ -48,4 +49,5 @@ message User {
 	string created_at = 34;
 	string updated_at = 35;
 	int32 org_id = 36;
+	RepositoryPermission permissions = 37;
 }

@@ -12,12 +12,7 @@ option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
-
-message RepositoryPermission {
-	bool admin = 1;
-	bool push = 2;
-	bool pull = 3;
-}
+import "repository_permission.proto";
 
 message Repository {
 	int32 id = 1;
