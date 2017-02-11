@@ -89,4 +89,5 @@ message Commit {
 	repeated CommitFileDetail files = 6;
 	repeated CommitDetailTree parents = 7;
 	Repository repo = 8;
+	string branch = 9;
 }
