@@ -15,6 +15,7 @@ import "user.proto";
 import "repository.proto";
 import "pull_request.proto";
 import "installation.proto";
+import "reactions.proto";
 
 message PullRequestReviewCommentLink {
 	string html = 1;
@@ -42,6 +43,7 @@ message PullRequestReviewComment {
 	string html_url = 13;
 	string pull_request_url = 14;
 	PullRequestReviewCommentLinks _links = 15;
+	Reactions reactions = 16;
 }
 
 message PullRequestReviewCommentEvent {

@@ -1,7 +1,7 @@
 .PHONY: default
 .DEFAULT_GOAL := test
 
-VERSION := 1.0.16
+VERSION := 1.0.17
 NAME := github-protobuf
 PKG := jhaynie/$(NAME)
 
