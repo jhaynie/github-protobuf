@@ -567,3 +567,92 @@ func TestIssuesEventWithPR(t *testing.T) {
 		}
 	}
 }
+
+func TestIssueWithReactions(t *testing.T) {
+	event := `{
+	  "url": "https://api.github.com/repos/pinpt/test_repo/issues/9",
+	  "repository_url": "https://api.github.com/repos/pinpt/test_repo",
+	  "labels_url": "https://api.github.com/repos/pinpt/test_repo/issues/9/labels{/name}",
+	  "comments_url": "https://api.github.com/repos/pinpt/test_repo/issues/9/comments",
+	  "events_url": "https://api.github.com/repos/pinpt/test_repo/issues/9/events",
+	  "html_url": "https://github.com/pinpt/test_repo/issues/9",
+	  "id": 208358996,
+	  "number": 9,
+	  "title": "Issue with a reaction",
+	  "user": {
+	    "login": "jhaynie",
+	    "id": 6027,
+	    "avatar_url": "https://avatars.githubusercontent.com/u/6027?v=3",
+	    "gravatar_id": "",
+	    "url": "https://api.github.com/users/jhaynie",
+	    "html_url": "https://github.com/jhaynie",
+	    "followers_url": "https://api.github.com/users/jhaynie/followers",
+	    "following_url": "https://api.github.com/users/jhaynie/following{/other_user}",
+	    "gists_url": "https://api.github.com/users/jhaynie/gists{/gist_id}",
+	    "starred_url": "https://api.github.com/users/jhaynie/starred{/owner}{/repo}",
+	    "subscriptions_url": "https://api.github.com/users/jhaynie/subscriptions",
+	    "organizations_url": "https://api.github.com/users/jhaynie/orgs",
+	    "repos_url": "https://api.github.com/users/jhaynie/repos",
+	    "events_url": "https://api.github.com/users/jhaynie/events{/privacy}",
+	    "received_events_url": "https://api.github.com/users/jhaynie/received_events",
+	    "type": "User",
+	    "site_admin": false
+	  },
+	  "labels": [
+
+	  ],
+	  "state": "open",
+	  "locked": false,
+	  "assignee": null,
+	  "assignees": [
+
+	  ],
+	  "milestone": null,
+	  "comments": 1,
+	  "created_at": "2017-02-17T07:28:00Z",
+	  "updated_at": "2017-02-17T07:28:11Z",
+	  "closed_at": null,
+	  "body": "",
+	  "closed_by": null,
+	  "reactions": {
+	    "url": "https://api.github.com/repos/pinpt/test_repo/issues/9/reactions",
+	    "total_count": 21,
+	    "+1": 1,
+	    "-1": 2,
+	    "laugh": 3,
+	    "hooray": 4,
+	    "confused": 5,
+	    "heart": 6
+	  }
+	}`
+	var issue Issue
+	err := json.Unmarshal([]byte(event), &issue)
+	if err != nil {
+		t.Error(err)
+	} else {
+		if issue.Reactions.Url != "https://api.github.com/repos/pinpt/test_repo/issues/9/reactions" {
+			t.Fatalf("expected Url to be 'https://api.github.com/repos/pinpt/test_repo/issues/9/reactions' was '%s'", issue.Reactions.Url)
+		}
+		if issue.Reactions.TotalCount != 21 {
+			t.Fatalf("expected TotalCount to be '21' was '%d'", issue.Reactions.TotalCount)
+		}
+		if issue.Reactions.Plus1 != 1 {
+			t.Fatalf("expected Plus1 to be '1' was '%d'", issue.Reactions.Plus1)
+		}
+		if issue.Reactions.Minus1 != 2 {
+			t.Fatalf("expected Minus1 to be '2' was '%d'", issue.Reactions.Minus1)
+		}
+		if issue.Reactions.Laugh != 3 {
+			t.Fatalf("expected Laugh to be '3' was '%d'", issue.Reactions.Laugh)
+		}
+		if issue.Reactions.Hooray != 4 {
+			t.Fatalf("expected Hooray to be '4' was '%d'", issue.Reactions.Hooray)
+		}
+		if issue.Reactions.Confused != 5 {
+			t.Fatalf("expected Confused to be '5' was '%d'", issue.Reactions.Confused)
+		}
+		if issue.Reactions.Heart != 6 {
+			t.Fatalf("expected Heart to be '6' was '%d'", issue.Reactions.Heart)
+		}
+	}
+}

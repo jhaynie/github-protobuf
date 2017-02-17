@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/reactions
+
+package github;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+message Reactions {
+	string url = 1;
+	int32 total_count = 2;
+	int32 plus1 = 3 [(gogoproto.jsontag) = "+1"];
+	int32 minus1 = 4 [(gogoproto.jsontag) = "-1"];
+	int32 laugh = 5;
+	int32 hooray = 6;
+	int32 confused = 7;
+	int32 heart = 8;
+}

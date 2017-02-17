@@ -10,6 +10,7 @@ option (gogoproto.unmarshaler_all) = true;
 option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
+import "reactions.proto";
 
 message Comment {
 	string url = 1;
@@ -23,4 +24,5 @@ message Comment {
 	string created_at = 9;
 	string updated_at = 10;
 	string body = 11;
+	Reactions reactions = 12;
 }

@@ -14,6 +14,7 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "repository.proto";
 import "milestone.proto";
+import "reactions.proto";
 
 message RepositoryRef {
 	string label = 1;
@@ -41,15 +42,15 @@ message Links {
 message PullRequest {
 	int32 id = 1;
 	string url = 2;
-   string html_url = 3;
-   string diff_url = 4;
-   string patch_url = 5;
-   string issue_url = 6;
-   string commits_url = 7;
-   string review_comments_url = 8;
-   string review_comment_url = 9;
-   string comments_url = 10;
-   string statuses_url = 11;
+	string html_url = 3;
+	string diff_url = 4;
+	string patch_url = 5;
+	string issue_url = 6;
+	string commits_url = 7;
+	string review_comments_url = 8;
+	string review_comment_url = 9;
+	string comments_url = 10;
+	string statuses_url = 11;
 	int32 number = 12;
 	string state = 13;
 	string title = 14;
@@ -74,4 +75,5 @@ message PullRequest {
 	int32 additions = 33;
 	int32 deletions = 34;
 	int32 changed_files = 35;
+	Reactions reactions = 36;
 }

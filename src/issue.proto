@@ -13,6 +13,7 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "user.proto";
 import "milestone.proto";
+import "reactions.proto";
 
 message Label {
 	string url = 1;
@@ -30,11 +31,11 @@ message PullRequestRef {
 message Issue {
 	int32 id = 1;
 	string url = 2;
-   string repository_url = 3;
-   string labels_url = 4;
-   string comments_url = 5;
-   string events_url = 6;
-   string html_url = 7;
+	string repository_url = 3;
+	string labels_url = 4;
+	string comments_url = 5;
+	string events_url = 6;
+	string html_url = 7;
 	int32 number = 8;
 	string state = 9;
 	string title = 10;
@@ -51,4 +52,5 @@ message Issue {
 	User closed_by = 21;
 	PullRequestRef pull_request = 22;
 	repeated User assignees = 23;
+	Reactions reactions = 24;
 }
