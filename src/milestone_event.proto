@@ -13,6 +13,8 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "milestone.proto";
 import "installation.proto";
+import "user.proto";
+import "repository.proto";
 
 message MilestoneChange {
 	string from = 1;
@@ -21,6 +23,9 @@ message MilestoneChange {
 message MilestoneEvent {
 	string action = 1;
 	Milestone milestone = 2;
-	map<string, MilestoneChange> changes = 3;
-	Installation installation = 4;
+	Repository repository = 3;
+	User organization = 4;
+	User sender = 5;
+	map<string, MilestoneChange> changes = 6;
+	Installation installation = 7;
 }

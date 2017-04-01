@@ -13,6 +13,8 @@ option (gogoproto.goproto_getters_all) = false;
 
 import "label.proto";
 import "installation.proto";
+import "user.proto";
+import "repository.proto";
 
 message LabelChange {
 	string from = 1;
@@ -21,6 +23,9 @@ message LabelChange {
 message LabelEvent {
 	string action = 1;
 	Label label = 2;
-	map<string, LabelChange> changes = 3;
-	Installation installation = 4;
+	Repository repository = 3;
+	User organization = 4;
+	User sender = 5;
+	map<string, LabelChange> changes = 6;
+	Installation installation = 7;
 }
