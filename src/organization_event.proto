@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#organizationevent
+
+package github;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+import "user.proto";
+import "installation.proto";
+
+message Invitation {
+	int32 id = 1;
+	string login = 2;
+	string email = 3;
+	string role = 4;
+}
+
+message Membership {
+	string url = 1;
+	string state = 2;
+	string role = 3;
+	string organization_url = 4;
+	User user = 5;
+}
+
+message OrganizationEvent {
+	string action = 1;
+	Invitation invitation = 2;
+	Membership membership = 3;
+	User organization = 4;
+	User sender = 5;
+	Installation installation = 6;
+}

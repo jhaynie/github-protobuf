@@ -14,12 +14,7 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "milestone.proto";
 import "reactions.proto";
-
-message Label {
-	string url = 1;
-	string name = 2;
-	string color = 3;
-}
+import "label.proto";
 
 message PullRequestRef {
 	string url = 1;

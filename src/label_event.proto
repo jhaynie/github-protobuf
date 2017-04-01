@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+// https://developer.github.com/v3/activity/events/types/#labelevent
+
+package github;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.goproto_getters_all) = false;
+
+import "label.proto";
+import "installation.proto";
+
+message LabelChange {
+	string from = 1;
+}
+
+message LabelEvent {
+	string action = 1;
+	Label label = 2;
+	map<string, LabelChange> changes = 3;
+	Installation installation = 4;
+}
