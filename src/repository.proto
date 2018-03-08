@@ -14,6 +14,14 @@ option (gogoproto.goproto_getters_all) = false;
 import "user.proto";
 import "repository_permission.proto";
 
+message RepositoryLicense {
+	string key = 1;
+	string name = 2;
+	string spdx_id = 3;
+	string url = 4;
+	string html_url = 5;
+}
+
 message Repository {
 	int32 id = 1;
 	User owner = 2;
@@ -93,7 +101,8 @@ message Repository {
 	bool allow_merge_commit = 74;
 	bool archived = 75;
 	bool has_projects = 76;
-	string license = 77;
+	RepositoryLicense license = 77;
+	repeated string topics = 78;
 }
 
 //NOTE: organization can also be a string !!
